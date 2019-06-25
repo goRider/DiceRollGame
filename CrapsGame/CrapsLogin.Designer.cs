@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.playerLabel = new System.Windows.Forms.Label();
             this.loginButton = new System.Windows.Forms.Button();
             this.playerTextBox = new System.Windows.Forms.TextBox();
@@ -35,6 +36,15 @@
             this.addPlayerButton = new System.Windows.Forms.Button();
             this.removePlayerButton = new System.Windows.Forms.Button();
             this.playerStatusLabel = new System.Windows.Forms.Label();
+            this.clearPlayerScoreHistoryButton = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.crapsDataSet = new CrapsGame.CrapsDataSet();
+            this.playersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.playersTableAdapter = new CrapsGame.CrapsDataSetTableAdapters.PlayersTableAdapter();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.crapsDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // playerLabel
@@ -100,11 +110,56 @@
             this.playerStatusLabel.TabIndex = 7;
             this.playerStatusLabel.Text = "Not Logged In";
             // 
+            // clearPlayerScoreHistoryButton
+            // 
+            this.clearPlayerScoreHistoryButton.Location = new System.Drawing.Point(651, 273);
+            this.clearPlayerScoreHistoryButton.Name = "clearPlayerScoreHistoryButton";
+            this.clearPlayerScoreHistoryButton.Size = new System.Drawing.Size(75, 23);
+            this.clearPlayerScoreHistoryButton.TabIndex = 8;
+            this.clearPlayerScoreHistoryButton.Text = "Clear History";
+            this.clearPlayerScoreHistoryButton.UseVisualStyleBackColor = true;
+            this.clearPlayerScoreHistoryButton.Click += new System.EventHandler(this.ClearPlayerScoreHistoryButton_Click);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Location = new System.Drawing.Point(651, 341);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 9;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
+            // crapsDataSet
+            // 
+            this.crapsDataSet.DataSetName = "CrapsDataSet";
+            this.crapsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // playersBindingSource
+            // 
+            this.playersBindingSource.DataMember = "Players";
+            this.playersBindingSource.DataSource = this.crapsDataSet;
+            // 
+            // playersTableAdapter
+            // 
+            this.playersTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(248, 139);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 10;
+            // 
             // CrapsLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.clearPlayerScoreHistoryButton);
             this.Controls.Add(this.playerStatusLabel);
             this.Controls.Add(this.removePlayerButton);
             this.Controls.Add(this.addPlayerButton);
@@ -114,6 +169,10 @@
             this.Controls.Add(this.playerLabel);
             this.Name = "CrapsLogin";
             this.Text = "CrapsLogin";
+            this.Load += new System.EventHandler(this.CrapsLogin_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.crapsDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,5 +187,11 @@
         private System.Windows.Forms.Button addPlayerButton;
         private System.Windows.Forms.Button removePlayerButton;
         private System.Windows.Forms.Label playerStatusLabel;
+        private System.Windows.Forms.Button clearPlayerScoreHistoryButton;
+        private System.Windows.Forms.Button exitButton;
+        private CrapsDataSet crapsDataSet;
+        private System.Windows.Forms.BindingSource playersBindingSource;
+        private CrapsDataSetTableAdapters.PlayersTableAdapter playersTableAdapter;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

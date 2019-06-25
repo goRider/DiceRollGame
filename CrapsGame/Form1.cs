@@ -106,5 +106,10 @@ namespace CrapsGame
             else
                 MessageBox.Show("Continue");
         }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
