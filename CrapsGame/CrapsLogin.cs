@@ -42,7 +42,7 @@ namespace CrapsGame
                     cmd.Parameters.Add("PlayerName", SqlDbType.NVarChar).Value = playerTextBox.Text.Trim();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.HasRows == true)
+                        if (reader.FieldCount != 0)
                         {
                             Form1 frm = new Form1();
                             CrapsLogin crpLogin = new CrapsLogin();
@@ -63,7 +63,28 @@ namespace CrapsGame
 
         private void ClearPlayerScoreHistoryButton_Click(object sender, EventArgs e)
         {
-
+            using (var conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("DELETE Players FROM dbo.Players WHERE PlayerScore = @PlayerScore"))
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+                    
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.FieldCount != 0)
+                        {
+                            cmd.Parameters.Add("PlayerScore", SqlDbType.VarChar);
+                            MessageBox.Show("Player Score history is clear");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Active Player score");
+                        }
+                    }
+                    conn.Close();
+                }
+            }
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
