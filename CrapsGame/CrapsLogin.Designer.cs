@@ -100,6 +100,7 @@
             this.removePlayerButton.TabIndex = 6;
             this.removePlayerButton.Text = "Delete Player";
             this.removePlayerButton.UseVisualStyleBackColor = true;
+            this.removePlayerButton.Click += new System.EventHandler(this.RemovePlayerButton_Click);
             // 
             // playerStatusLabel
             // 

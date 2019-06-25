@@ -21,12 +21,26 @@ namespace CrapsGame
 
         private void AddPlayerButton_Click(object sender, EventArgs e)
         {
+            string newQuery = "INSERT INTO Players (PlayerName) VALUES ('" + playerTextBox.Text.Trim() + "')";
             using (var conn = new SqlConnection(connectionString))
             {
-                string queryPlayerScore = "INSERT INTO Players (PlayerName) VALUES ('" + playerTextBox.Text.Trim() + "')";
-                SqlDataAdapter sda = new SqlDataAdapter(queryPlayerScore, conn);
-                DataTable dtbl = new DataTable();
-                sda.Fill(dtbl);
+                using (SqlCommand cmd = new SqlCommand(newQuery))
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+                    cmd.Parameters.Add("PlayersName", SqlDbType.VarChar).Value = playerTextBox.Text.Trim();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.FieldCount != 0)
+                        {
+                            MessageBox.Show("Your Player name is removed sucessfully");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Enter the correct Player name");
+                        }
+                    }
+                }
             }
         }
 
@@ -96,6 +110,11 @@ namespace CrapsGame
         {
             // TODO: This line of code loads data into the 'crapsDataSet.Players' table. You can move, or remove it, as needed.
             this.playersTableAdapter.Fill(this.crapsDataSet.Players);
+
+        }
+
+        private void RemovePlayerButton_Click(object sender, EventArgs e)
+        {
 
         }
     }
