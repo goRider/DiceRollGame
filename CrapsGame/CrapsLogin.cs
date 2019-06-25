@@ -44,9 +44,11 @@ namespace CrapsGame
                     {
                         if (reader.HasRows == true)
                         {
+                            Form1 frm = new Form1();
                             CrapsLogin crpLogin = new CrapsLogin();
                             this.Hide();
                             crpLogin.Show();
+                            frm.Show();
                             MessageBox.Show("Successful Login");
                         }
                         else
