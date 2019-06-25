@@ -12,17 +12,39 @@ namespace CrapsGame
 {
     public partial class Form1 : Form
     {
+        private Random r = new Random();
+
+        private enum Status
+        {
+            WIN = 7,
+            LOST,
+            CONTINUE,
+        }
+
         public Form1()
         {
             InitializeComponent();
         }
 
+        public void RollDice()
+        {
+            int diceOne = 0;
+            int diceTwo = 0;
+
+            diceOne = r.Next(6) + 1;
+            diceTwo = r.Next(6) + 1;
+
+            
+        }
+
         private void cmdStart_Click(object sender, EventArgs e)
         {
-            Random r = new Random();
             int iRnd = new int();
-
-            iRnd = r.Next(0, 6);
+            int myPoint = 0;
+            iRnd = r.Next(0, 7);
+            int iRnd2 = new int();
+            iRnd2 = r.Next(0, 7);
+            int sum = iRnd + iRnd2;
 
             // Insert logic
             if (iRnd == 0)
@@ -75,6 +97,14 @@ namespace CrapsGame
             {
                 pbDiceShow2.Image = pbDice6.Image;
             }
+
+
+            if (sum == 7 || sum == 11)
+                MessageBox.Show("You have won");
+            else if (sum == 2 || sum == 3 || sum == 11)
+                MessageBox.Show("Player Loses");
+            else
+                MessageBox.Show("Continue");
         }
     }
 }
