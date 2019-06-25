@@ -21,16 +21,15 @@ namespace CrapsGame
         {
             Random r = new Random();
             int iRnd = new int();
-            int iRnd2 = new int();
 
             iRnd = r.Next(0, 6);
-            iRnd2 = r.Next(0, 6);
 
+            // Insert logic
             if (iRnd == 0)
             {
                 pbDiceShow1.Image = pbDice1.Image;
             }
-            else if(iRnd == 1)
+            else if (iRnd == 1)
             {
                 pbDiceShow1.Image = pbDice2.Image;
             }
@@ -51,25 +50,24 @@ namespace CrapsGame
                 pbDiceShow1.Image = pbDice6.Image;
             }
 
-            // Second dice roll image
-
-            if (iRnd2 == 0)
+            iRnd = r.Next(0, 6);
+            if (iRnd == 0)
             {
                 pbDiceShow2.Image = pbDice1.Image;
             }
-            else if (iRnd2 == 1)
+            else if (iRnd == 1)
             {
                 pbDiceShow2.Image = pbDice2.Image;
             }
-            else if (iRnd2 == 2)
+            else if (iRnd == 2)
             {
                 pbDiceShow2.Image = pbDice3.Image;
             }
-            else if (iRnd2 == 3)
+            else if (iRnd == 3)
             {
                 pbDiceShow2.Image = pbDice4.Image;
             }
-            else if (iRnd2 == 4)
+            else if (iRnd == 4)
             {
                 pbDiceShow2.Image = pbDice5.Image;
             }
