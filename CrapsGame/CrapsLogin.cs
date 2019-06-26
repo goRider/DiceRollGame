@@ -33,13 +33,14 @@ namespace CrapsGame
                     {
                         if (reader.FieldCount != 0)
                         {
-                            MessageBox.Show("Your Player name is removed sucessfully");
+                            MessageBox.Show("Your Player name is removed successfully");
                         }
                         else
                         {
                             MessageBox.Show("Enter the correct Player name");
                         }
                     }
+                    conn.Close();
                 }
             }
         }
@@ -115,6 +116,28 @@ namespace CrapsGame
 
         private void RemovePlayerButton_Click(object sender, EventArgs e)
         {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("DELETE Players FROM dbo.Players WHERE id = @id"))
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.FieldCount != 0)
+                        {
+                            cmd.Parameters.Add("id", SqlDbType.VarChar);
+                            MessageBox.Show("Player Score history is clear");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Active Player score");
+                        }
+                    }
+                    conn.Close();
+                }
+            }
 
         }
     }

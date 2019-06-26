@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -14,10 +15,11 @@ namespace CrapsGame
     public partial class Form1 : Form
     {
         private Random r = new Random();
+        private static readonly string connString = "";
 
         private enum Status
         {
-            WIN = 7,
+            WIN,
             LOST,
             CONTINUE,
         }
@@ -111,11 +113,56 @@ namespace CrapsGame
             }
 
             if (sum == 7 || sum == 11)
-                MessageBox.Show("You have won");
+                InsertWinPlayerScoreDescription();
             else if (sum == 2 || sum == 3 || sum == 11)
-                MessageBox.Show("Player Loses");
+                InsertLossPlayerScoreDescription();
             else
-                MessageBox.Show("Continue");
+                InsertPointPlayerScoreDescription();
+        }
+
+        public static void InsertWinPlayerScoreDescription()
+        {
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                var queryString = "";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = connection;
+                    connection.Open();
+                    comm.Parameters.Add("Players", SqlDbType.VarChar);
+                }
+            }
+            MessageBox.Show("WON");
+        }
+
+        public static void InsertLossPlayerScoreDescription()
+        {
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                var queryString = "INSERT INTO Players.";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = connection;
+                    connection.Open();
+                    comm.Parameters.Add("Players", SqlDbType.VarChar);
+                }
+            }
+            MessageBox.Show("CRAPS");
+        }
+
+        public static void InsertPointPlayerScoreDescription()
+        {
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                var queryString = "";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = connection;
+                    connection.Open();
+                    comm.Parameters.Add("Players", SqlDbType.VarChar);
+                }
+            }
+            MessageBox.Show("CRAPS");
         }
     }
 }
