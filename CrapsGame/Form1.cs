@@ -124,7 +124,7 @@ namespace CrapsGame
         {
             using (SqlConnection connection = new SqlConnection(connString))
             {
-                var queryString = "";
+                var queryString = "INSERT INTO Players(PlayerScore) VALUES ('WIN')";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = connection;
@@ -139,8 +139,8 @@ namespace CrapsGame
         {
             using (SqlConnection connection = new SqlConnection(connString))
             {
-                var queryString = "INSERT INTO Players.";
-                using (SqlCommand comm = new SqlCommand())
+                var queryString = "INSERT INTO Players(PlayerScore) VALUES ('LOSS')";
+                using (SqlCommand comm = new SqlCommand(queryString))
                 {
                     comm.Connection = connection;
                     connection.Open();
@@ -154,8 +154,8 @@ namespace CrapsGame
         {
             using (SqlConnection connection = new SqlConnection(connString))
             {
-                var queryString = "";
-                using (SqlCommand comm = new SqlCommand())
+                var queryString = "INSERT INTO Players(PlayerScore) VALUES('POINT')";
+                using (SqlCommand comm = new SqlCommand(queryString))
                 {
                     comm.Connection = connection;
                     connection.Open();
